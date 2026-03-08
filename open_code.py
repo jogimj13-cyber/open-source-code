@@ -1,4 +1,4 @@
-# imports
+# Imports
 from openai import OpenAI
 import gradio as gr
 
@@ -12,15 +12,17 @@ models = [
 ]
 
 clients = {
-    "yi-coder":ollama,
-    "starcoder":ollama
+    "yi-coder": ollama,
+    "starcoder": ollama
 }
 
+# Code system prompt - decides the tone and response of the model
 system_prompt = """
 You are a helpful coding assistant who generates very efficient code in the language they want.
 The only objectives are to make it as fast as possible using ANY methods possible, make it have no errors, and to give the generated output.
 Do not provide any explanation at all, assuming the user knows how to code. Also, do not put the coding language at line 1. Just respond with the code.
 """
+
 # Creates user prompt
 def user_prompt_for(code_type, prompt):
     return f"""
@@ -57,8 +59,11 @@ coding_language = [
     "Rust: Modern, high-performance systems programming"
 ]
 
-# UI using gradio
+
+# Setting the theme using gradio
 theme = gr.themes.Default(font=[gr.themes.GoogleFont("Source Code Pro")], primary_hue=gr.themes.colors.teal, secondary_hue=gr.themes.colors.sky).set(loader_color ="#FF0000")
+
+# UI using gradio
 
 with gr.Blocks(theme=theme, title="CODER-AI") as ui:
     with gr.Row():
